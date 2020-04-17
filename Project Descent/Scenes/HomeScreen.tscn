@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Backgrounds/BG_01/BG_01.png" type="Texture" id=1]
+[ext_resource path="res://Title_Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/HomeScreen.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Play.gd" type="Script" id=4]
+[ext_resource path="res://SnowTileset.tres" type="TileSet" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Bobbing"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 11, 11.4 ), Vector2( 11, 21.4 ), Vector2( 11, 11.5 ) ]
+}
+
+[node name="HomeScreen" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 47.0499, 78.0235 )
+scale = Vector2( 0.161461, 0.165608 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="snowAnimation" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 65536, 0, 0, 65537, 0, 0, 131072, 0, 0, 131073, 0, 0 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 89.0
+margin_bottom = 159.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="UI"]
+margin_left = 24.0
+margin_top = 88.0
+margin_right = 63.0
+margin_bottom = 108.0
+rect_clip_content = true
+text = "Play"
+expand_icon = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="UI"]
+margin_left = 24.0
+margin_top = 112.0
+margin_right = 63.0
+margin_bottom = 134.0
+text = "Load"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="UI"]
+margin_left = 16.0
+margin_top = 136.0
+margin_right = 80.0
+margin_bottom = 159.0
+text = "Settings"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Bobbing = SubResource( 1 )
+
+[node name="Label" type="Label" parent="AnimationPlayer"]
+margin_left = 11.0
+margin_top = 11.4
+margin_right = 83.0
+margin_bottom = 31.3983
+custom_fonts/font = ExtResource( 2 )
+text = "Descent"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="UI/Play" to="UI/Play" method="_on_Play_pressed"]

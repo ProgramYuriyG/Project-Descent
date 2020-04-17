@@ -1,0 +1,240 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://WallTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/woodPlatform.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Monster.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DeathDarkening.tres" type="StyleBox" id=4]
+[ext_resource path="res://DarkeningStyleBox.tres" type="StyleBox" id=5]
+[ext_resource path="res://Assets/Icons/manaPotion.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Icons/healthPot.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Icons/sword.PNG" type="Texture" id=8]
+[ext_resource path="res://Assets/Icons/shield.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/attackButton.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/deathRetryButton.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Dungeon.gd" type="Script" id=14]
+[ext_resource path="res://DescentArrowAnimated.tres" type="Texture" id=16]
+[ext_resource path="res://Scripts/continueButton.gd" type="Script" id=17]
+[ext_resource path="res://Smaller_Font.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Assets/Icons/goldCoin.png" type="Texture" id=19]
+
+[sub_resource type="Animation" id=1]
+resource_name = "movingWall"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("platform2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 46, 90 ), Vector2( 45.5, 34.75 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("platform:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 45.5, 34.75 ), Vector2( 45.5, -10 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("platform3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 46, 155 ), Vector2( 46, 90 ) ]
+}
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource( 14 )
+
+[node name="wallBackground" type="TileMap" parent="."]
+position = Vector2( -0.830231, 160.052 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 20, 20 )
+cell_quadrant_size = 1
+format = 1
+tile_data = PoolIntArray( -524288, 5, 0, -524286, 5, 0, -524284, 5, 0, -458752, 6, 0, -458751, 6, 0, -458750, 6, 0, -458749, 6, 0, -458748, 6, 0, -393216, 6, 0, -393215, 6, 0, -393214, 6, 0, -393213, 6, 0, -393212, 6, 0, -327680, 6, 0, -327679, 6, 0, -327678, 6, 0, -327677, 6, 0, -327676, 6, 0, -262144, 6, 0, -262143, 6, 0, -262142, 6, 0, -262141, 6, 0, -262140, 6, 0, -196608, 6, 0, -196607, 6, 0, -196606, 6, 0, -196605, 6, 0, -196604, 6, 0, -131072, 6, 0, -131071, 6, 0, -131070, 6, 0, -131069, 6, 0, -131068, 6, 0, -65536, 6, 0, -65535, 6, 0, -65534, 6, 0, -65533, 6, 0, -65532, 6, 0, 0, 2, 0, 1, 1, 0, 2, 2, 0, 3, 1, 0, 4, 2, 0, 65536, 2, 0, 65537, 1, 0, 65538, 1, 0, 65539, 2, 0, 65540, 2, 0, 131072, 2, 0, 131073, 1, 0, 131074, 2, 0, 131075, 1, 0, 131076, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 2, 0, 262147, 1, 0, 262148, 2, 0, 327680, 2, 0, 327681, 1, 0, 327682, 2, 0, 327683, 1, 0, 327684, 1, 0, 393216, 2, 0, 393217, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 458752, 2, 0, 458753, 1, 0, 458754, 2, 0, 458755, 1, 0, 458756, 2, 0, 524288, 0, 0, 720896, 0, 0, 851968, 0, 0 )
+
+[node name="wallAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/movingWall = SubResource( 1 )
+
+[node name="platform" type="Sprite" parent="."]
+position = Vector2( 45.0707, 34.75 )
+scale = Vector2( 3.63434, 2.65 )
+texture = ExtResource( 2 )
+
+[node name="platform2" type="Sprite" parent="."]
+position = Vector2( 45.3561, 90 )
+scale = Vector2( 3.65151, 2.65 )
+texture = ExtResource( 2 )
+
+[node name="platform3" type="Sprite" parent="."]
+position = Vector2( 45.2488, 155 )
+scale = Vector2( 3.6601, 2.65 )
+texture = ExtResource( 2 )
+
+[node name="darkeningBackground" type="Label" parent="."]
+margin_top = 162.0
+margin_right = 134.0
+margin_bottom = 253.0
+rect_rotation = -89.9999
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Monster" parent="." instance=ExtResource( 3 )]
+
+[node name="attackButton" type="Button" parent="."]
+margin_left = 4.90375
+margin_top = 124.41
+margin_right = 21.9037
+margin_bottom = 141.41
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 8 )
+flat = true
+expand_icon = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blockButton" type="Button" parent="."]
+margin_left = 26.9037
+margin_top = 124.41
+margin_right = 43.9037
+margin_bottom = 141.41
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 9 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="healthPotionButton" type="Button" parent="."]
+margin_left = 48.9037
+margin_top = 124.41
+margin_right = 65.9037
+margin_bottom = 141.41
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 7 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="manaPotionButton" type="Button" parent="."]
+margin_left = 70.6778
+margin_top = 124.41
+margin_right = 86.6778
+margin_bottom = 141.41
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 6 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goldLabel" type="Label" parent="."]
+margin_left = 9.64685
+margin_top = 115.979
+margin_right = 27.6469
+margin_bottom = 126.979
+custom_fonts/font = ExtResource( 18 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="goldIcon" type="Button" parent="."]
+margin_left = 0.239508
+margin_top = 112.456
+margin_right = 12.2395
+margin_bottom = 127.456
+icon = ExtResource( 19 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continueButton" type="Button" parent="."]
+visible = false
+margin_left = 35.8087
+margin_top = 117.771
+margin_right = 56.8087
+margin_bottom = 140.771
+icon = ExtResource( 16 )
+flat = true
+expand_icon = true
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="deathLabel" type="Label" parent="."]
+visible = false
+margin_top = 161.0
+margin_right = 162.0
+margin_bottom = 251.0
+rect_rotation = -89.9999
+custom_styles/normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deathText" type="Label" parent="deathLabel"]
+margin_left = 160.0
+margin_right = 250.0
+margin_bottom = 162.0
+rect_rotation = 89.9999
+text = "You Died"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="deathRetryButton" type="Button" parent="deathLabel"]
+margin_left = 55.7947
+margin_top = 13.2385
+margin_right = 116.795
+margin_bottom = 60.2385
+rect_rotation = 89.9999
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Retry"
+flat = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="wallAnimationPlayer" to="continueButton" method="_on_wallAnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="wallAnimationPlayer" to="." method="_on_wallAnimationPlayer_animation_finished"]
+[connection signal="pressed" from="attackButton" to="attackButton" method="_on_attackButton_pressed"]
+[connection signal="pressed" from="attackButton" to="." method="_on_attackButton_pressed"]
+[connection signal="pressed" from="blockButton" to="." method="_on_blockButton_pressed"]
+[connection signal="pressed" from="continueButton" to="continueButton" method="_on_continueButton_pressed"]
+[connection signal="visibility_changed" from="deathLabel/deathRetryButton" to="deathLabel/deathRetryButton" method="_on_deathRetryButton_visibility_changed"]
